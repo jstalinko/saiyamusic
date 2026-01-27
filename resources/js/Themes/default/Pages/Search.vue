@@ -1,0 +1,7 @@
+<template>
+    <AppLayout>
+        <div class="container">
+            <h1>Search</h1>
+        </div>
+    </AppLayout>
+</template>

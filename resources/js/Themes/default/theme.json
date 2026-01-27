@@ -1,0 +1,17 @@
+{
+    "theme_name": "Default",
+    "theme_author": "jadicms",
+    "theme_version": "1.0.0",
+    "theme_description": "Default Theme",
+    "theme_url": "https://javaradigital.com",
+    "theme_demo_url": "https://jadicms.com",
+    "theme_screenshot": "https://i.ibb.co.com/k2NhFzsy/Screenshot-from-2025-12-03-17-07-11.png",
+    "theme_license": "MIT",
+    "theme_tags": [
+        "default",
+        "blog",
+        "article",
+        "news",
+        "cms"
+    ]
+}
