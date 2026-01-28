@@ -268,4 +268,17 @@ class JadiFrontendController extends Controller
         $props['filterValue'] = $filterValue;
         return Inertia::render('PostFilter', j_inertia_props($props));
     }
+
+    public function contact()
+    {
+        j_inertia_meta(
+            "Contact - " . config('j_option_autoload.site_name'),
+            "Contact",
+            url('/contact'),
+            url('storage' . config('j_option_autoload.icon')),
+            json_decode(config('j_option_autoload.meta_tags'), true)
+        );
+        $props['offices'] = json_decode(j_get_option('offices'), true);
+        return Inertia::render('Contact', j_inertia_props($props));
+    }
 }
