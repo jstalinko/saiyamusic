@@ -24,7 +24,7 @@
 
                         <h4 class="text-3xl font-black text-gray-900 mb-2">{{ office.name }}</h4>
                         <p class="text-orange-600 font-bold text-sm mb-8 uppercase tracking-widest">{{ office.province
-                            }} {{ office.city }}</p>
+                        }} {{ office.city }}</p>
 
                         <div class="space-y-6 flex-grow">
                             <div class="flex gap-4">
@@ -45,7 +45,7 @@
 
                         <a :href="office.map_url" target="_blank"
                             class="mt-10 inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition duration-300 w-full">
-                            Buka di Google Maps
+                            Google Maps
                             <ExternalLink :size="18" />
                         </a>
                     </div>

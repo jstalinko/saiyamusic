@@ -6,9 +6,7 @@
                 <div class="max-w-sm">
                     <h3 class="text-2xl font-black tracking-tighter mb-6">PT SAIYA <span
                             class="text-orange-600">INDONESIA</span></h3>
-                    <p class="text-gray-500 leading-relaxed mb-8">
-                        Membangun warisan musik Indonesia melalui kualitas instrumen kelas dunia sejak tahun 2005.
-                    </p>
+
                     <div class="flex gap-4">
                         <a href="#" class="p-3 bg-white/5 rounded-full hover:bg-orange-600 transition">
                             <Instagram :size="20" />
