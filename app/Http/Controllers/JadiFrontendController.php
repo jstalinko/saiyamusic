@@ -57,6 +57,7 @@ class JadiFrontendController extends Controller
         $props['categories'] = ProductCategory::where('active', true)->get();
         $props['featuredProducts'] = Product::where('active', true)->where('featured', true)->with('category')->orderBy('id', 'desc')->get();
         $props['banners'] = Banner::where('active', true)->get();
+        $props['offices'] = json_decode(j_get_option('offices'), true);
         return Inertia::render('Home', j_inertia_props($props));
     }
     public function posts()
@@ -87,7 +88,10 @@ class JadiFrontendController extends Controller
             url('/storage' . config('j_option_autoload.icon')),
             json_decode(config('j_option_autoload.meta_tags'), true)
         );
-        return Inertia::render('Products');
+        $props['products'] = Product::where('active', true)->with('category')->orderBy('id', 'desc')->get();
+        $props['categories'] = ProductCategory::where('active', true)->get();
+
+        return Inertia::render('Products', j_inertia_props($props));
     }
 
     public function detailProduct(Request $request)

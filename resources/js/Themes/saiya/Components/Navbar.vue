@@ -9,14 +9,14 @@
                 </div>
 
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a v-for="item in menus" :key="item.id" :href="item.url"
+                    <Link v-for="item in menus" :key="item.id" :href="item.url"
                         class="text-sm font-semibold text-gray-600 hover:text-orange-600 transition">
                         {{ item.label }}
-                    </a>
-                    <button
+                    </Link>
+                    <Link href="/contact"
                         class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-orange-600 transition duration-300">
                         Contact Us
-                    </button>
+                    </Link>
                 </div>
 
                 <div class="md:hidden">
@@ -34,11 +34,12 @@
             <div v-if="isOpen"
                 class="md:hidden bg-white border-b border-gray-100 absolute w-full px-4 pt-2 pb-6 shadow-xl">
                 <div class="flex flex-col space-y-4">
-                    <a v-for="item in menus" :key="item.id" :href="item.url"
+                    <Link v-for="item in menus" :key="item.id" :href="item.url"
                         class="text-lg font-medium text-gray-800 py-2 border-b border-gray-50">
                         {{ item.label }}
-                    </a>
-                    <button class="bg-orange-600 text-white w-full py-3 rounded-xl font-bold">Contact Us</button>
+                    </Link>
+                    <Link href="/contact" class="bg-orange-600 text-white w-full py-3 rounded-xl font-bold">Contact
+                        Us</Link>
                 </div>
             </div>
         </Transition>
@@ -48,7 +49,7 @@
 <script setup>
 import { ref } from 'vue';
 import { Menu, X } from 'lucide-vue-next';
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 const isOpen = ref(false);
 
 const $page = usePage();

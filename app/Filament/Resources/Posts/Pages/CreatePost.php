@@ -20,6 +20,7 @@ class CreatePost extends CreateRecord
             $slug = Str::slug($data['title']);
             $data['slug'] = $slug . '-' . bin2hex(time());
         }
+        $data['slug'] = Str::slug($data['title']);
         $data['user_id'] = Auth::user()->id;
         $data['excerpt'] = Str::limit($data['content'], 160);
         return $data;

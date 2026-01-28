@@ -26,33 +26,22 @@
                     <div>
                         <h4 class="text-xs font-black uppercase tracking-[0.2em] text-orange-600 mb-6">Explore</h4>
                         <ul class="space-y-4 text-sm text-gray-400 font-medium">
-                            <li><a href="#" class="hover:text-white transition">Catalog</a></li>
-                            <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                            <li><a href="#" class="hover:text-white transition">Workshop</a></li>
+                            <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+                            <li><a href="/page/about-us" class="hover:text-white transition">About Us</a></li>
+                            <li><a href="/page/workshop" class="hover:text-white transition">Workshop</a></li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-orange-600 mb-6">Support</h4>
-                        <ul class="space-y-4 text-sm text-gray-400 font-medium">
-                            <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                            <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                            <li><a href="#" class="hover:text-white transition">Warranty</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-orange-600 mb-6">Global Sales</h4>
-                        <p class="text-sm text-gray-500 italic leading-relaxed">Melayani pengiriman ke lebih dari 45
-                            negara di seluruh dunia.</p>
-                    </div>
+
+
                 </div>
             </div>
 
             <div
                 class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-[11px] font-bold text-gray-600 uppercase tracking-widest">
-                <p>© 2026 PT SAIYA INDONESIA. Crafting Excellence.</p>
+                <p>© {{ new Date().getFullYear() }} PT SAIYA INDONESIA. Crafting Excellence.</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Trade</a>
+                    <a href="/page/privacy-policy" class="hover:text-white">Privacy Policy</a>
+                    <a href="/page/terms-of-trade" class="hover:text-white">Terms of Trade</a>
                 </div>
             </div>
         </div>

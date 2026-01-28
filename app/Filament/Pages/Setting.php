@@ -34,6 +34,9 @@ class Setting extends Page implements Forms\Contracts\HasForms
         if (isset($this->data['meta_tags']) && is_string($this->data['meta_tags'])) {
             $this->data['meta_tags'] = json_decode($this->data['meta_tags'] ?? '[]', true);
         }
+        if (isset($this->data['offices']) && is_string($this->data['offices'])) {
+            $this->data['offices'] = json_decode($this->data['offices'] ?? '[]', true);
+        }
     }
     public function loadSettings(): array
     {
@@ -45,7 +48,8 @@ class Setting extends Page implements Forms\Contracts\HasForms
             'icon'             => [j_get_option('icon')],
             'meta_keywords'    => j_get_option('meta_keywords'),
             'meta_description' => j_get_option('meta_description'),
-            'meta_tags'        => j_get_option('meta_tags', "[]"),
+            'meta_tags'        => j_get_option('meta_tags', []),
+            'offices'          => j_get_option('offices', []),
         ];
     }
 
@@ -56,6 +60,9 @@ class Setting extends Page implements Forms\Contracts\HasForms
         // Pastikan kunci meta_tags diubah ke JSON jika dia array
         if (isset($data['meta_tags']) && is_array($data['meta_tags'])) {
             $data['meta_tags'] = json_encode($data['meta_tags'], JSON_PRETTY_PRINT);
+        }
+        if (isset($data['offices']) && is_array($data['offices'])) {
+            $data['offices'] = json_encode($data['offices'], JSON_PRETTY_PRINT);
         }
 
 
@@ -78,6 +85,19 @@ class Setting extends Page implements Forms\Contracts\HasForms
                         TextInput::make('site_name')->label('Site Name')->required(),
                         TextInput::make('tagline'),
                         FileUpload::make('icon')->label('Site Icon'),
+                    ]),
+                Section::make('Office Address')
+                    ->schema([
+                        Repeater::make('offices')
+                            ->schema([
+                                TextInput::make('name')->label('Office Name'),
+                                TextInput::make('province')->label('Province'),
+                                TextInput::make('city')->label('City'),
+                                TextInput::make('address')->label('Address'),
+                                TextInput::make('phone')->label('Phone'),
+                                TextInput::make('email')->label('Email'),
+                                TextInput::make('map_url')->label('Map URL'),
+                            ])->columns(2),
                     ]),
 
                 Section::make('SEO')

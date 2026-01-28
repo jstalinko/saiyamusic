@@ -5,8 +5,8 @@
             <About />
             <Products :categories="jdata.categories" :products="jdata.products" />
             <FeaturedProducts :products="jdata.featuredProducts" />
-            <News />
-            <Contact />
+            <News :posts="jdata.posts" />
+            <Contact :offices="jdata.offices" />
 
         </div>
     </AppLayout>

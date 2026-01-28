@@ -22,24 +22,25 @@
                 <div
                     class="lg:col-span-2 group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-sm border border-gray-100">
                     <div class="relative overflow-hidden aspect-[16/9]">
-                        <img :src="newsList[0].image"
+                        <img :src="imageUrl(newsList[0].image)"
                             class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                         <div class="absolute top-6 left-6">
                             <span
                                 class="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest text-gray-900 shadow-sm">
-                                {{ newsList[0].date }}
+                                {{ formatDate(newsList[0].created_at) }}
                             </span>
                         </div>
                     </div>
+
                     <div class="p-8">
                         <span class="text-orange-600 font-bold text-xs uppercase tracking-widest">{{
-                            newsList[0].category }}</span>
+                            newsList[0].category }} </span>
                         <h4
                             class="text-3xl font-black text-gray-900 mt-3 mb-4 group-hover:text-orange-600 transition-colors leading-tight">
                             {{ newsList[0].title }}
                         </h4>
                         <p class="text-gray-600 leading-relaxed line-clamp-2">
-                            {{ newsList[0].excerpt }}
+                            {{ stripTags(newsList[0].excerpt) }}
                         </p>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                     <div v-for="(news, index) in newsList.slice(1)" :key="index"
                         class="group cursor-pointer flex gap-5">
                         <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-200">
-                            <img :src="news.image"
+                            <img :src="imageUrl(news.image)"
                                 class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
                         </div>
                         <div class="flex flex-col justify-center">
@@ -58,7 +59,7 @@
                                 class="text-lg font-bold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors">
                                 {{ news.title }}
                             </h5>
-                            <p class="text-xs text-gray-400 mt-2 font-medium">{{ news.date }}</p>
+                            <p class="text-xs text-gray-400 mt-2 font-medium">{{ formatDate(news.created_at) }}</p>
                         </div>
                     </div>
 
@@ -76,34 +77,10 @@
 
 <script setup>
 import { ArrowUpRight, ArrowRight } from 'lucide-vue-next';
+import { imageUrl, formatDate, stripTags } from '@/helpers';
 
-const newsList = [
-    {
-        title: "Saiya Indonesia Resmi Membuka Workshop Baru di Jawa Tengah",
-        date: "12 Januari 2026",
-        category: "Corporate",
-        excerpt: "Untuk memenuhi permintaan pasar global yang meningkat, kami memperluas kapasitas produksi dengan fasilitas ramah lingkungan...",
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200"
-    },
-    {
-        title: "Kolaborasi Artis: Signature Series Bersama Gitaris Legendaris",
-        date: "05 Januari 2026",
-        category: "Artist",
-        image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=400"
-    },
-    {
-        title: "Tips Merawat Fingerboard Rosewood Agar Tetap Awet",
-        date: "28 Desember 2025",
-        category: "Workshop",
-        image: "https://images.unsplash.com/photo-1550985616-10810253b84d?q=80&w=400"
-    },
-    {
-        title: "Eksplorasi Kayu Lokal Sebagai Pengganti Mahogany",
-        date: "20 Desember 2025",
-        category: "Research",
-        image: "https://images.unsplash.com/photo-1459749411177-042180ca673b?q=80&w=400"
-    }
-];
+const $prop = defineProps({ posts: Object });
+const newsList = $prop.posts;
 </script>
 
 <style scoped>
