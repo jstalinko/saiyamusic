@@ -2,7 +2,8 @@
     <AppLayout>
         <div class="container mx-auto">
             <h1>Products</h1>
-            <Products :categories="jdata.categories" :products="jdata.products" />
+            <Products :categories="jdata.categories" :products="jdata.products"
+                :selectedCategory="jdata.selectedCategory" />
         </div>
     </AppLayout>
 </template>

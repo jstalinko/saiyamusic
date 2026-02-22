@@ -3,7 +3,8 @@
         <div>
             <Hero :banners="jdata.banners" />
             <About />
-            <Products :categories="jdata.categories" :products="jdata.products" />
+            <Products :categories="jdata.categories" :products="jdata.products"
+                :selectedCategory="jdata.selectedCategory" />
             <FeaturedProducts :products="jdata.featuredProducts" />
             <News :posts="jdata.posts" />
             <Contact :offices="jdata.offices" />

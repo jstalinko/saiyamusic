@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <span
-                            :class="['font-bold text-sm tracking-widest uppercase', selectedCategory === cat.name ? 'text-orange-600' : 'text-gray-400']">
+                            :class="['font-bold text-sm tracking-widest uppercase', selectedCategory === cat.slug ? 'text-orange-600' : 'text-gray-400']">
                             {{ cat.name }}
                         </span>
                     </button>
@@ -40,11 +40,11 @@
                     enter-from-class="opacity-0 translate-y-8" enter-to-class="opacity-100 translate-y-0"
                     leave-active-class="absolute transition duration-300 ease-in"
                     leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
-                    <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
+                    <ProductCard v-for="product in productsList" :key="product.id" :product="product" />
                 </TransitionGroup>
             </div>
 
-            <div v-if="filteredProducts.length === 0" class="text-center py-20 text-gray-400">
+            <div v-if="productsList.length === 0" class="text-center py-20 text-gray-400">
                 Produk belum tersedia untuk kategori ini.
             </div>
 
@@ -59,43 +59,54 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { router } from '@inertiajs/vue3';
 import ProductCard from './ProductCard.vue';
 import { imageUrl } from '@/helpers';
 
 const $prop = defineProps({
     categories: Object,
     products: Object,
+    selectedCategory: {
+        type: String,
+        default: 'All'
+    }
 });
 
-const selectedCategory = ref('All');
-const displayCount = ref(8);
-
+const selectedCategory = ref($prop.selectedCategory);
 const categories = ref($prop.categories);
-const products = ref($prop.products);
 
-const filteredProducts = computed(() => {
-    let filtered = selectedCategory.value === 'All'
-        ? products.value
-        : products.value.filter(p => p.category.slug === selectedCategory.value);
-    return filtered.slice(0, displayCount.value);
-});
+const productsList = ref([...$prop.products.data]);
+const nextUrl = ref($prop.products.next_page_url);
 
-const totalFilteredProducts = computed(() => {
-    return selectedCategory.value === 'All'
-        ? products.value.length
-        : products.value.filter(p => p.category.slug === selectedCategory.value).length;
-});
+watch(() => $prop.products, (newProducts) => {
+    if (newProducts.current_page === 1) {
+        productsList.value = [...newProducts.data];
+    } else {
+        productsList.value = [...productsList.value, ...newProducts.data];
+    }
+    nextUrl.value = newProducts.next_page_url;
+}, { deep: true });
 
-const hasMore = computed(() => displayCount.value < totalFilteredProducts.value);
+const hasMore = computed(() => !!nextUrl.value);
 
 const loadMore = () => {
-    displayCount.value += 12;
+    if (nextUrl.value) {
+        router.get(nextUrl.value, {}, {
+            preserveState: true,
+            preserveScroll: true,
+            only: ['jdata']
+        });
+    }
 };
 
-const selectCategory = (category) => {
-    selectedCategory.value = category;
-    displayCount.value = 8;
+const selectCategory = (categorySlug) => {
+    selectedCategory.value = categorySlug;
+    router.get(window.location.pathname, { category: categorySlug }, {
+        preserveState: true,
+        preserveScroll: true,
+        only: ['jdata']
+    });
 };
 </script>
 

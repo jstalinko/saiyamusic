@@ -19,7 +19,7 @@ class JadiFrontendController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function home()
+    public function home(Request $request)
     {
 
 
@@ -53,9 +53,18 @@ class JadiFrontendController extends Controller
                 return $post;
             });
 
-        $props['products'] = Product::where('active', true)->with('category')->orderBy('id', 'desc')->get();
+        $category = $request->query('category', 'All');
+        $productsQuery = Product::where('active', true)->with('category')->orderBy('id', 'desc');
+        if ($category !== 'All') {
+            $productsQuery->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        }
+
+        $props['products'] = $productsQuery->paginate(8)->withQueryString();
+        $props['selectedCategory'] = $category;
         $props['categories'] = ProductCategory::where('active', true)->get();
-        $props['featuredProducts'] = Product::where('active', true)->where('featured', true)->with('category')->orderBy('id', 'desc')->get();
+        $props['featuredProducts'] = Product::where('active', true)->where('featured', true)->with('category')->orderBy('id', 'desc')->take(8)->get();
         $props['banners'] = Banner::where('active', true)->get();
         $props['offices'] = json_decode(j_get_option('offices'), true);
         return Inertia::render('Home', j_inertia_props($props));
@@ -79,7 +88,7 @@ class JadiFrontendController extends Controller
             });
         return Inertia::render('Posts', j_inertia_props($props));
     }
-    public function products()
+    public function products(Request $request)
     {
         j_inertia_meta(
             "Semua Produk",
@@ -88,7 +97,17 @@ class JadiFrontendController extends Controller
             url('/storage' . config('j_option_autoload.icon')),
             json_decode(config('j_option_autoload.meta_tags'), true)
         );
-        $props['products'] = Product::where('active', true)->with('category')->orderBy('id', 'desc')->get();
+
+        $category = $request->query('category', 'All');
+        $productsQuery = Product::where('active', true)->with('category')->orderBy('id', 'desc');
+        if ($category !== 'All') {
+            $productsQuery->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        }
+
+        $props['products'] = $productsQuery->paginate(8)->withQueryString();
+        $props['selectedCategory'] = $category;
         $props['categories'] = ProductCategory::where('active', true)->get();
 
         return Inertia::render('Products', j_inertia_props($props));
