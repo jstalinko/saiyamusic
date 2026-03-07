@@ -35,7 +35,7 @@
                 <!-- IMAGE -->
                 <div class="relative order-1 md:order-2 flex justify-center">
                     <div
-                        class="absolute w-[300px] h-[300px] bg-orange-200/50 rounded-full blur-3xl -z-10 animate-pulse" />
+                        class="absolute w-[300px] h-[300px] rounded-full -z-10 opacity-70" style="background: radial-gradient(circle, rgba(254, 215, 170, 0.8) 0%, transparent 65%);" />
 
                     <Transition name="guitar-swap" mode="out-in" appear>
                         <!-- v-if biar gak blank pas image belum siap -->
@@ -156,23 +156,15 @@ onUnmounted(() => {
 .guitar-swap-enter-from {
     opacity: 0;
     transform: translateY(18px) scale(0.96);
-    filter: blur(6px);
 }
 
 .guitar-swap-leave-to {
     opacity: 0;
     transform: translateY(-18px) scale(0.96);
-    filter: blur(6px);
-}
-
-/* WRAP biar transform gak "pecah" sama layout */
-.img-wrap {
-    will-change: transform, opacity;
 }
 
 /* IDLE ANIMATION (FLOAT + ROTATE) */
 .img-idle {
-    will-change: transform;
     transform-origin: center center;
     animation: floatRotate 4.5s ease-in-out infinite;
 }

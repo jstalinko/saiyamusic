@@ -28,7 +28,7 @@
                                         ? 'border-orange-600 shadow-lg scale-95'
                                         : 'border-transparent bg-gray-50 hover:bg-gray-100'
                                 ]" type="button">
-                                <img :src="imageUrl(img)" class="w-full h-full object-cover" alt="Thumbnail" />
+                                <img :src="imageUrl(img)" class="w-full h-full object-cover" alt="Thumbnail" loading="lazy" />
                             </button>
                         </div>
 
@@ -49,7 +49,7 @@
                                     <!-- Thumbnail -->
                                     <div class="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                         <img :src="imageUrl(wood.image)" class="w-full h-full object-cover"
-                                            :alt="wood.name" />
+                                            :alt="wood.name" loading="lazy" />
                                     </div>
 
                                     <!-- Content -->

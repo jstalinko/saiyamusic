@@ -55,11 +55,11 @@ class DatabaseSeeder extends Seeder
         // setting
         $settings = [
             'base_url' => url('/'),
-            'site_name' => 'JadiCMS',
-            'tagline' => 'Laravel Power, Inertia Speed. The Modern Stack, Simplified.',
+            'site_name' => 'Saiya Music',
+            'tagline' => 'PT SAIYA INDONESIA',
             'icon' => '/favicon.ico',
-            'meta_keywords' => 'JadiCMS, Laravel, Inertia, PHP, CMS',
-            'meta_description' => 'JadiCMS is a modern CMS built with Laravel and Inertia.',
+            'meta_keywords' => 'PT SAIYA INDONESIA, Laravel, Inertia, PHP, CMS',
+            'meta_description' => 'PT SAIYA INDONESIA is a modern CMS built with Laravel and Inertia.',
             'meta_tags' => '{}',
         ];
 
@@ -67,8 +67,44 @@ class DatabaseSeeder extends Seeder
             j_set_option($key, $value);
         }
 
+        $this->call([
+            BannerSeeder::class ,
+            CategorySeeder::class ,
+            PostSeeder::class ,
+            ProductSeeder::class ,
+        ]);
 
-        //  $this->call(PageCommonSeeder::class);
+
+        Artisan::call('storage:link');
+        j_set_option('active_theme', 'saiya');
+
+
+
+        // offices seeder
+        $offices = [
+            [
+                'name' => 'PT SAIYA INDONESIA ( Jepara )',
+                'province' => 'Jawa Tengah',
+                'city' => 'Jepara',
+                'address' => 'JL. RMP SOSROKARTONO KM 3 RT 33,DESA KECAPI KEC. TAHUNAN',
+                'phone' => '+62 291 596186',
+                'email' => 'saiya_indonesia@yahoo.com',
+                'map_url' => 'https://www.google.com/maps/place/saiya',
+            ],
+            [
+                'name' => 'PT SAIYA INDONESIA ( Cirebon )',
+                'province' => 'Jawa Barat',
+                'city' => 'Cirebon',
+                'address' => 'JL. PANGERAN ANTASARI KM 3 NO 29 DESA LURAH KEC. PLUMBON',
+                'phone' => '+62 231 247263',
+                'email' => 'saiya_indonesia@yahoo.com',
+                'map_url' => 'https://www.google.com/maps/place/saiya',
+            ]
+        ];
+
+        j_set_option('offices', json_encode($offices, JSON_PRETTY_PRINT));
+
+
 
         echo "Database seeded successfully.\n";
         echo "|-------------------------------------|\n";

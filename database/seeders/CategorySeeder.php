@@ -50,6 +50,17 @@ class CategorySeeder extends Seeder
         // Category berdasarkan tipe gitar
         $typeCategories = [
             [
+                'name' => 'Acoustic Guitars',
+                'image' => '/images/acoustic.webp',
+                'description' => '
+            <p><strong>Acoustic Guitars</strong> feature nylon strings that produce a warm, mellow, and rich resonance.</p>
+            <ul>
+                <li><strong>Best for:</strong> Fingerstyle, classical compositions, and bossa nova.</li>
+                <li><strong>Key Feature:</strong> Wider fretboard for precise finger placement and soft string tension for smooth playability.</li>
+            </ul>',
+                'active' => true,
+            ],
+            [
                 'name' => 'Classic Guitars',
                 'image' => '/images/classic.webp',
                 'description' => '
@@ -88,13 +99,13 @@ class CategorySeeder extends Seeder
 
         foreach ($all as $cat) {
             ProductCategory::updateOrCreate(
-                ['slug' => Str::slug($cat['name'])],
-                [
-                    'name' => $cat['name'],
-                    'image' => $cat['image'],
-                    'description' => $cat['description'],
-                    'active' => $cat['active'],
-                ]
+            ['slug' => Str::slug($cat['name'])],
+            [
+                'name' => $cat['name'],
+                'image' => $cat['image'],
+                'description' => $cat['description'],
+                'active' => $cat['active'],
+            ]
             );
         }
     }

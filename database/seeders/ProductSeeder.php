@@ -2,104 +2,100 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
-use App\Models\ProductCategory;
 
 class ProductSeeder extends Seeder
 {
-    private function recursiveGlob($path)
-    {
-        $return = [];
-        // Menggunakan GLOB_BRACE opsional jika ingin filter ekstensi di sini
-        $files = glob($path . "/*");
 
-        if ($files === false) return [];
-
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                // Gabungkan hasil rekursif ke array utama
-                $return = array_merge($return, $this->recursiveGlob($file));
-            } else {
-                // Masukkan data ke dalam satu index yang sama
-                $return[] = [
-                    'fullpath' => $file,
-                    'folder' => basename($path),
-                    'filename' => basename($file),
-                ];
-            }
-        }
-        return $return;
-    }
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        // Ambil category tipe (untuk product_category_id)
-        // Kamu bisa ganti jadi material jika di project kamu product_category_id memang untuk bahan.
-        $classicCategory  = ProductCategory::where('slug', 'classic-guitars')->first();
-        $electricCategory = ProductCategory::where('slug', 'electric-guitars')->first();
-        $ukuleleCategory = ProductCategory::where('slug', 'ukulele')->first();
+        $categoryPath = [
+            'acoustic-guitars' => 'acoustic',
+            'classic-guitars' => 'classic',
+            'electric-guitars' => 'electric',
+            'ukulele' => 'ukulele',
+        ];
 
-        $CATEGORY = "ukulele";
+        foreach ($categoryPath as $slug => $folderName) {
+            $category = \App\Models\ProductCategory::where('slug', $slug)->first();
 
-        // classic
-        $PATH = "/media/shn/mewmew/saiya/ukulele";
-        $files = $this->recursiveGlob($PATH);
+            if (!$category) {
+                continue;
+            }
 
+            $basePath = public_path("images/{$folderName}");
 
-        $groupedFiles = [];
-        foreach ($files as $file) {
-            $groupedFiles[$file['folder']][] = "products/{$CATEGORY}/{$file['folder']}/{$file['filename']}";
-        }
+            if (!\Illuminate\Support\Facades\File::exists($basePath)) {
+                continue;
+            }
 
-        $productData = [];
+            $directories = \Illuminate\Support\Facades\File::directories($basePath);
 
+            foreach ($directories as $dir) {
+                $modelName = basename($dir); // folder name inside acoustic/classic etc
 
-        // 2. Iterasi berdasarkan group folder (setiap folder = satu produk)
-        foreach ($groupedFiles as $folderName => $allImages) {
-            // Ambil gambar pertama sebagai thumbnail/cover
-            $coverImage = $allImages[0];
+                // Get all .webp images (or any image)
+                $files = collect(\Illuminate\Support\Facades\File::files($dir))
+                    ->filter(function ($file) {
+                    return in_array($file->getExtension(), ['webp', 'jpg', 'jpeg', 'png']);
+                })->values();
 
-            $productData[] = [
-                'name'                => 'SAIYA UKULELE ' . $folderName,
-                'slug'                => str()->slug('SAIYA UKULELE ' . $folderName),
-                'model'               => $folderName,
-                'specifications'      => json_encode([
-                    'model' => $folderName,
-                    'category' => $CATEGORY,
-                    'brand' => 'SAIYA',
-                    'Size' => '480mm',
-                    'Top' => 'Amara White Fiber Middle',
-                    'Side/back' => 'Amara',
-                    'Neck' => 'Meranti',
-                    'Headneck' => 'Amara',
-                    'Fretboard' => 'Amara 20 400R ABS Black',
-                    'Spill' => '4.0',
-                    'Nut-saddle' => '43-76MM Black',
-                    'Sticker' => 'HX-1967',
-                    'Logo' => 'LASER SAIYA',
-                    'Label' => 'SAIYA',
-                    'Colos' => 'NS Gloss',
-                    'Tail handle' => 'Amara',
-                    'ABS' => 'Ivory Front + 3 Rows',
-                    'Head' => 'Amara #6',
-                    'Bridge' => 'Amara #6',
-                    'Bridge pins' => 'Black',
-                    'Iron neck' => '440MM',
-                    'Inner plate' => 'Meranti',
-                    'Tuning pages' => 'JY-006 8.0',
-                    'Strip pin' => '#1',
-                    'String' => 'Acoustic BP-408',
-                    'Pick guard' => '-',
-                    'EQ' => '-',
-                ]),
-                'image'               => $coverImage,
-                'product_category_id' => $ukuleleCategory->id,
-                'gallery'             => json_encode($allImages),
-                'active'              => true,
-                'featured'            => rand(0, 1) ? true : false,
-                'description' => '
-    <div class="product-description">
-        <p>Experience the exceptional craftsmanship of <strong>SAIYA GUITARS ' . $folderName . '</strong>. 
+                if ($files->isEmpty()) {
+                    continue; // Skip if no images
+                }
+
+                $coverImage = "/images/{$folderName}/{$modelName}/" . $files->first()->getFilename();
+
+                $gallery = $files->map(function ($file) use ($folderName, $modelName) {
+                    return "/images/{$folderName}/{$modelName}/" . $file->getFilename();
+                })->toArray();
+
+                $categoryName = $category->name;
+
+                $insertProductData = [
+                    'product_category_id' => $category->id,
+                    'name' => 'SAIYA ' . strtoupper($categoryName) . ' ' . strtoupper($modelName),
+                    'model' => $modelName,
+                    'slug' => str()->slug('saiya-' . $categoryName . ' ' . $modelName),
+                    'specifications' => [
+                        'model' => $modelName,
+                        'category' => $categoryName,
+                        'brand' => 'SAIYA',
+                        'Size' => '480mm',
+                        'Top' => 'Amara White Fiber Middle',
+                        'Side/back' => 'Amara',
+                        'Neck' => 'Meranti',
+                        'Headneck' => 'Amara',
+                        'Fretboard' => 'Amara 20 400R ABS Black',
+                        'Spill' => '4.0',
+                        'Nut-saddle' => '43-76MM Black',
+                        'Sticker' => 'HX-1967',
+                        'Logo' => 'LASER SAIYA',
+                        'Label' => 'SAIYA',
+                        'Colos' => 'NS Gloss',
+                        'Tail handle' => 'Amara',
+                        'ABS' => 'Ivory Front + 3 Rows',
+                        'Head' => 'Amara #6',
+                        'Bridge' => 'Amara #6',
+                        'Bridge pins' => 'Black',
+                        'Iron neck' => '440MM',
+                        'Inner plate' => 'Meranti',
+                        'Tuning pages' => 'JY-006 8.0',
+                        'Strip pin' => '#1',
+                        'String' => 'Acoustic BP-408',
+                        'Pick guard' => '-',
+                        'EQ' => '-',
+                    ],
+                    'image' => $coverImage,
+                    'gallery' => $gallery,
+                    'active' => true,
+                    'featured' => rand(0, 1) ? true : false,
+                    'description' => '<div class="product-description">
+        <p>Experience the exceptional craftsmanship of <strong>SAIYA GUITARS ' . $modelName . '</strong>. 
         Each instrument is meticulously handcrafted to meet the highest standards of professional musicians worldwide.</p>
         
         <h3>Why Choose Saiya Guitars?</h3>
@@ -110,13 +106,16 @@ class ProductSeeder extends Seeder
         </ul>
         
         <p>Whether on stage or in the studio, this instrument delivers a versatile sound profile that captures the true essence of your performance.</p>
-    </div>
-',
-                'created_at'          => now(),
-                'updated_at'          => now(),
-            ];
-        }
+    </div>',
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
 
-        \App\Models\Product::insert($productData);
+                \App\Models\Product::updateOrCreate(
+                ['slug' => $insertProductData['slug']],
+                    $insertProductData
+                );
+            }
+        }
     }
 }

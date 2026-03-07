@@ -19,8 +19,8 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <div
-                    class="lg:col-span-2 group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-sm border border-gray-100">
+                <Link :href="'/' + newsList[0].slug"
+                    class="lg:col-span-2 group cursor-pointer border-transparent overflow-hidden rounded-3xl bg-white shadow-sm border hover:border-orange-600 transition-colors">
                     <div class="relative overflow-hidden aspect-[16/9]">
                         <img :src="imageUrl(newsList[0].image)"
                             class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
@@ -43,10 +43,10 @@
                             {{ stripTags(newsList[0].excerpt) }}
                         </p>
                     </div>
-                </div>
+                </Link>
 
                 <div class="flex flex-col gap-8">
-                    <div v-for="(news, index) in newsList.slice(1)" :key="index"
+                    <Link :href="'/' + news.slug" v-for="(news, index) in newsList.slice(1)" :key="index"
                         class="group cursor-pointer flex gap-5">
                         <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-200">
                             <img :src="imageUrl(news.image)"
@@ -61,7 +61,7 @@
                             </h5>
                             <p class="text-xs text-gray-400 mt-2 font-medium">{{ formatDate(news.created_at) }}</p>
                         </div>
-                    </div>
+                    </Link>
 
                     <a href="#"
                         class="md:hidden flex items-center justify-center gap-2 p-4 border border-gray-200 rounded-xl font-bold">
@@ -77,6 +77,7 @@
 
 <script setup>
 import { ArrowUpRight, ArrowRight } from 'lucide-vue-next';
+import { Link } from '@inertiajs/vue3';
 import { imageUrl, formatDate, stripTags } from '@/helpers';
 
 const $prop = defineProps({ posts: Object });
