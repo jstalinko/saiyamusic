@@ -18,14 +18,16 @@ class BannersTable
     {
         return $table
             ->columns([
-                    ImageColumn::make('image'),
+                    ImageColumn::make('image')
+                        ->getStateUsing(function ($record) {
+                            return str_starts_with($record->image, '/') ? url($record->image) : $record->image;
+                        }),
                 TextColumn::make('subtitle')
                     ->searchable(),
                 TextColumn::make('title')
                     ->searchable(),
         
-                ToggleColumn::make('active')
-                    ->boolean(),
+                ToggleColumn::make('active'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

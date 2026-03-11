@@ -3,6 +3,8 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Post;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\User;
 use App\Models\Media;
 use App\Models\Comment;
@@ -14,10 +16,10 @@ class DashboardStatOverviewWidget extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Users',User::count()),
-            Stat::make('Posts',Post::count()),
-            Stat::make('Comments',Comment::count()),
-            Stat::make('Medias',Media::count())
+            Stat::make('Users', User::count()),
+            Stat::make('Posts', Post::count()),
+            Stat::make('Products', Product::count()),
+            Stat::make('Category Product', ProductCategory::count())
         ];
     }
 }

@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProductsTable
@@ -16,7 +17,7 @@ class ProductsTable
     {
         return $table
             ->columns([
-                TextColumn::make('product.category.name')
+                TextColumn::make('category.name')
                 ->label('Category')
                 ->badge()
                 ->searchable()
@@ -25,7 +26,10 @@ class ProductsTable
                     ->searchable(),
                 TextColumn::make('model')
                     ->searchable(),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->getStateUsing(function ($record) {
+                        return str_starts_with($record->image, '/') ? url($record->image) : $record->image;
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -36,7 +40,10 @@ class ProductsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category.name')
+                ->relationship('category', 'name')
+                ->searchable()
+                ->preload(),
             ])
             ->recordActions([
                 ViewAction::make(),

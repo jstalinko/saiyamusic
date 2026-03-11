@@ -15,19 +15,21 @@ class BannerForm
         return $schema
             ->components([
 
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('subtitle')
-                    ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
+            TextInput::make('title')
+            ->required(),
+            TextInput::make('subtitle')
+            ->required(),
+            Textarea::make('description')
+            ->required()
+            ->columnSpanFull(),
 
-                FileUpload::make('image')
-                    ->image()
-                    ->required(),
-                Toggle::make('active')
-                    ->required(),
-            ]);
+            FileUpload::make('image')
+            ->image()
+            ->disk('public')
+            ->directory('banners')
+            ->required(),
+            Toggle::make('active')
+            ->required(),
+        ]);
     }
 }

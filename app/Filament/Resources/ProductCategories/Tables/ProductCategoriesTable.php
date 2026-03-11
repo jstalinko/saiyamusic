@@ -20,7 +20,10 @@ class ProductCategoriesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->getStateUsing(function ($record) {
+                        return str_starts_with($record->image, '/') ? url($record->image) : $record->image;
+                    }),
                 ToggleColumn::make('active'),
                 TextColumn::make('created_at')
                     ->dateTime()
