@@ -21,8 +21,7 @@ class ProductCategoriesTable
                 TextColumn::make('name')
                     ->searchable(),
                 ImageColumn::make('image'),
-                ToggleColumn::make('active')
-                    ->boolean(),
+                ToggleColumn::make('active'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
