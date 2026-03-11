@@ -28,7 +28,8 @@ class ProductForm
                     ->directory('products')
                     ->required()
                     ->columnSpanFull(),
-                FileUpload::make('Gallery Images')
+                FileUpload::make('gallery')
+                    ->label('Gallery Images')
                     ->default(null)
                     ->image()
                     ->imageEditor()
