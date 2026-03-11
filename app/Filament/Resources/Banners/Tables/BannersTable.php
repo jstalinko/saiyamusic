@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class BannersTable
@@ -17,14 +18,13 @@ class BannersTable
     {
         return $table
             ->columns([
+                    ImageColumn::make('image'),
                 TextColumn::make('subtitle')
                     ->searchable(),
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('url')
-                    ->searchable(),
-                ImageColumn::make('image'),
-                IconColumn::make('active')
+        
+                ToggleColumn::make('active')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()

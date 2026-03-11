@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ProductCategoriesTable
@@ -20,11 +21,7 @@ class ProductCategoriesTable
                 TextColumn::make('name')
                     ->searchable(),
                 ImageColumn::make('image'),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('description')
-                    ->searchable(),
-                IconColumn::make('active')
+                ToggleColumn::make('active')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()

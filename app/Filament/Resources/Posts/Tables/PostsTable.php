@@ -41,7 +41,7 @@ class PostsTable
             <div>
                 <b style="font-size: 15px;word-wrap: break-word;">' . $state . '</b>
                 <div style="font-size: 0.8rem; margin-top: 4px;">
-                    @' . $record->author->name . ' - ' . $badgeHtml . '
+                    @' . $record?->author?->name ?? 'Unknown'. ' - ' . $badgeHtml . '
                 </div>
             </div>
         ';

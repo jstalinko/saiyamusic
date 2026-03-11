@@ -16,8 +16,10 @@ class ProductsTable
     {
         return $table
             ->columns([
-                TextColumn::make('product_category_id')
-                    ->numeric()
+                TextColumn::make('product.category.name')
+                ->label('Category')
+                ->badge()
+                ->searchable()
                     ->sortable(),
                 TextColumn::make('name')
                     ->searchable(),
