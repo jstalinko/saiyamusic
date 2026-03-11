@@ -1,5 +1,5 @@
 <template>
-    <section v-show="slides.length > 0" class="relative min-h-screen pt-20 flex items-center overflow-hidden bg-white">
+    <section @mouseenter="stopTimer" @mouseleave="startTimer" v-show="slides.length > 0" class="relative min-h-screen pt-20 flex items-center overflow-hidden bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="grid md:grid-cols-2 gap-12 items-center">
 
@@ -109,6 +109,10 @@ const startTimer = () => {
             setSlide(nextIndex);
         }, 5000);
     }
+};
+
+const stopTimer = () => {
+    if (timer) clearInterval(timer);
 };
 
 watch(

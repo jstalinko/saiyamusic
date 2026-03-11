@@ -1,0 +1,302 @@
+{
+  "acoustic": {
+    "360G": {
+      "SF-360G": [
+        "acoustic-360G-SF-360G-184rmy.webp",
+        "acoustic-360G-SF-360G-5794ha.webp",
+        "acoustic-360G-SF-360G-7k660h.webp",
+        "acoustic-360G-SF-360G-a5cf6n.webp",
+        "acoustic-360G-SF-360G-bd38ju.webp",
+        "acoustic-360G-SF-360G-c9b6nk.webp",
+        "acoustic-360G-SF-360G-hbn0x2.webp",
+        "acoustic-360G-SF-360G-ka62lv.webp",
+        "acoustic-360G-SF-360G-n0tkrr.webp",
+        "acoustic-360G-SF-360G-ufvf5m.webp",
+        "acoustic-360G-SF-360G-wt4x71.webp",
+        "acoustic-360G-SF-360G-xucd42.webp",
+        "acoustic-360G-SF-360G-yklxdo.webp"
+      ],
+      "SW-360G": [
+        "acoustic-360G-SW-360G-0yr67z.webp",
+        "acoustic-360G-SW-360G-eqxwkr.webp",
+        "acoustic-360G-SW-360G-sdwnqp.webp",
+        "acoustic-360G-SW-360G-zxwi68.webp"
+      ]
+    },
+    "400C": {
+      "GF-400C-NT": [
+        "acoustic-400C-GF-400C-NT-cjmhl7.webp",
+        "acoustic-400C-GF-400C-NT-k3d165.webp",
+        "acoustic-400C-GF-400C-NT-kf22ma.webp",
+        "acoustic-400C-GF-400C-NT-vjyc4b.webp"
+      ],
+      "GW-400C-NT": [
+        "acoustic-400C-GW-400C-NT-dcr4c8.webp",
+        "acoustic-400C-GW-400C-NT-kshi80.webp",
+        "acoustic-400C-GW-400C-NT-qzl37a.webp",
+        "acoustic-400C-GW-400C-NT-s2ly5l.webp"
+      ]
+    },
+    "AE": {
+      "AEFC-240": [
+        "acoustic-AE-AEFC-240-0lkzpa.webp",
+        "acoustic-AE-AEFC-240-j5gr6p.webp",
+        "acoustic-AE-AEFC-240-o0zhps.webp",
+        "acoustic-AE-AEFC-240-qcctt5.webp"
+      ],
+      "AEG-240": [
+        "acoustic-AE-AEG-240-0csqny.webp",
+        "acoustic-AE-AEG-240-580xeh.webp",
+        "acoustic-AE-AEG-240-8hpnze.webp",
+        "acoustic-AE-AEG-240-8lv6u6.webp",
+        "acoustic-AE-AEG-240-924r1n.webp",
+        "acoustic-AE-AEG-240-ai4m85.webp",
+        "acoustic-AE-AEG-240-artelk.webp",
+        "acoustic-AE-AEG-240-bcncdt.webp",
+        "acoustic-AE-AEG-240-cby468.webp",
+        "acoustic-AE-AEG-240-cyfti0.webp",
+        "acoustic-AE-AEG-240-cyvu25.webp",
+        "acoustic-AE-AEG-240-fnf08e.webp",
+        "acoustic-AE-AEG-240-h040k4.webp",
+        "acoustic-AE-AEG-240-h6wnan.webp",
+        "acoustic-AE-AEG-240-llz600.webp",
+        "acoustic-AE-AEG-240-m7bd1g.webp",
+        "acoustic-AE-AEG-240-n6znfp.webp",
+        "acoustic-AE-AEG-240-ogb0qo.webp",
+        "acoustic-AE-AEG-240-xd8594.webp",
+        "acoustic-AE-AEG-240-xpx4dd.webp",
+        "acoustic-AE-AEG-240-y3lbrh.webp",
+        "acoustic-AE-AEG-240-y9yowm.webp",
+        "acoustic-AE-AEG-240-zk6tfz.webp",
+        "acoustic-AE-AEG-240-znq8qd.webp"
+      ],
+      "AEG-34": [
+        "acoustic-AE-AEG-34-7w3vk5.webp",
+        "acoustic-AE-AEG-34-nt0qfp.webp",
+        "acoustic-AE-AEG-34-uk0o5i.webp",
+        "acoustic-AE-AEG-34-xlj48p.webp"
+      ],
+      "AEG-38": [
+        "acoustic-AE-AEG-38-17t442.webp",
+        "acoustic-AE-AEG-38-hnd7lc.webp",
+        "acoustic-AE-AEG-38-wktexw.webp",
+        "acoustic-AE-AEG-38-xqrqf3.webp"
+      ],
+      "AEGC-240": [
+        "acoustic-AE-AEGC-240-0lq4mu.webp",
+        "acoustic-AE-AEGC-240-8mfjqa.webp",
+        "acoustic-AE-AEGC-240-lcx5nu.webp",
+        "acoustic-AE-AEGC-240-wn4efm.webp"
+      ],
+      "AEJ-240": [
+        "acoustic-AE-AEJ-240-817uh2.webp",
+        "acoustic-AE-AEJ-240-arno3i.webp",
+        "acoustic-AE-AEJ-240-p3h8mm.webp",
+        "acoustic-AE-AEJ-240-qzg3w6.webp"
+      ]
+    },
+    "FG-150": {
+      "FG-150-OPA": [
+        "acoustic-FG-150-FG-150-OPA-fka5vw.webp",
+        "acoustic-FG-150-FG-150-OPA-q1n8mb.webp",
+        "acoustic-FG-150-FG-150-OPA-vgddph.webp",
+        "acoustic-FG-150-FG-150-OPA-zph9af.webp"
+      ],
+      "FG-150-OPB": [
+        "acoustic-FG-150-FG-150-OPB-5baxip.webp",
+        "acoustic-FG-150-FG-150-OPB-p6g1dn.webp",
+        "acoustic-FG-150-FG-150-OPB-u5d2ov.webp",
+        "acoustic-FG-150-FG-150-OPB-xogeea.webp"
+      ],
+      "FG-150-OPI": [
+        "acoustic-FG-150-FG-150-OPI-e7nm7z.webp",
+        "acoustic-FG-150-FG-150-OPI-ec3aw2.webp",
+        "acoustic-FG-150-FG-150-OPI-ubfiif.webp",
+        "acoustic-FG-150-FG-150-OPI-vrsbbj.webp"
+      ],
+      "FG-150-OPK": [
+        "acoustic-FG-150-FG-150-OPK-2bv0ya.webp",
+        "acoustic-FG-150-FG-150-OPK-4zv7gp.webp",
+        "acoustic-FG-150-FG-150-OPK-8nyy45.webp",
+        "acoustic-FG-150-FG-150-OPK-lwg9r1.webp"
+      ],
+      "FG-150-OPO": [
+        "acoustic-FG-150-FG-150-OPO-19q5gw.webp",
+        "acoustic-FG-150-FG-150-OPO-4wh7l3.webp",
+        "acoustic-FG-150-FG-150-OPO-nijauk.webp",
+        "acoustic-FG-150-FG-150-OPO-wjq657.webp"
+      ],
+      "FG-150-OPP": [
+        "acoustic-FG-150-FG-150-OPP-4pmk1m.webp",
+        "acoustic-FG-150-FG-150-OPP-anzpkn.webp",
+        "acoustic-FG-150-FG-150-OPP-bh8q0i.webp",
+        "acoustic-FG-150-FG-150-OPP-za75yr.webp"
+      ],
+      "FG-150-OPR": [
+        "acoustic-FG-150-FG-150-OPR-1m6a47.webp",
+        "acoustic-FG-150-FG-150-OPR-32ehwm.webp",
+        "acoustic-FG-150-FG-150-OPR-3rte9v.webp",
+        "acoustic-FG-150-FG-150-OPR-58llsk.webp",
+        "acoustic-FG-150-FG-150-OPR-5l6iza.webp",
+        "acoustic-FG-150-FG-150-OPR-61cor5.webp",
+        "acoustic-FG-150-FG-150-OPR-7kp7h5.webp",
+        "acoustic-FG-150-FG-150-OPR-alp8py.webp",
+        "acoustic-FG-150-FG-150-OPR-am6am7.webp",
+        "acoustic-FG-150-FG-150-OPR-bzuagm.webp",
+        "acoustic-FG-150-FG-150-OPR-dbvio6.webp",
+        "acoustic-FG-150-FG-150-OPR-dox875.webp",
+        "acoustic-FG-150-FG-150-OPR-fb2trt.webp",
+        "acoustic-FG-150-FG-150-OPR-iqg359.webp",
+        "acoustic-FG-150-FG-150-OPR-j4fmo8.webp",
+        "acoustic-FG-150-FG-150-OPR-jed99h.webp",
+        "acoustic-FG-150-FG-150-OPR-lfn2pp.webp",
+        "acoustic-FG-150-FG-150-OPR-npyoqb.webp",
+        "acoustic-FG-150-FG-150-OPR-o4gk7k.webp",
+        "acoustic-FG-150-FG-150-OPR-qhw4sm.webp",
+        "acoustic-FG-150-FG-150-OPR-vbvl5s.webp",
+        "acoustic-FG-150-FG-150-OPR-vvddsp.webp",
+        "acoustic-FG-150-FG-150-OPR-wuhfq0.webp",
+        "acoustic-FG-150-FG-150-OPR-x3amsg.webp",
+        "acoustic-FG-150-FG-150-OPR-yjkkg2.webp",
+        "acoustic-FG-150-FG-150-OPR-z5over.webp"
+      ],
+      "FG-150-OPW": [
+        "acoustic-FG-150-FG-150-OPW-83pdq9.webp",
+        "acoustic-FG-150-FG-150-OPW-h8cl24.webp",
+        "acoustic-FG-150-FG-150-OPW-o2gdfe.webp",
+        "acoustic-FG-150-FG-150-OPW-t9n8oh.webp"
+      ]
+    },
+    "FSC": {
+      "FSC-AMARA": [
+        "acoustic-FSC-FSC-AMARA-0bmwgl.webp",
+        "acoustic-FSC-FSC-AMARA-crr1do.webp",
+        "acoustic-FSC-FSC-AMARA-pimyug.webp",
+        "acoustic-FSC-FSC-AMARA-rlimay.webp"
+      ],
+      "FSC-JT": [
+        "acoustic-FSC-FSC-JT-0bb6q6.webp",
+        "acoustic-FSC-FSC-JT-0f73zx.webp",
+        "acoustic-FSC-FSC-JT-3r1y5l.webp",
+        "acoustic-FSC-FSC-JT-3vrp8f.webp",
+        "acoustic-FSC-FSC-JT-4d4xa8.webp",
+        "acoustic-FSC-FSC-JT-5h7bie.webp",
+        "acoustic-FSC-FSC-JT-6h4y96.webp",
+        "acoustic-FSC-FSC-JT-be6vb0.webp",
+        "acoustic-FSC-FSC-JT-dultwy.webp",
+        "acoustic-FSC-FSC-JT-kj5hfo.webp",
+        "acoustic-FSC-FSC-JT-ledmo6.webp",
+        "acoustic-FSC-FSC-JT-mbe80b.webp",
+        "acoustic-FSC-FSC-JT-n7fify.webp",
+        "acoustic-FSC-FSC-JT-qs370f.webp",
+        "acoustic-FSC-FSC-JT-ryhvnm.webp",
+        "acoustic-FSC-FSC-JT-v47dtf.webp",
+        "acoustic-FSC-FSC-JT-vsub7b.webp",
+        "acoustic-FSC-FSC-JT-wmpfg9.webp",
+        "acoustic-FSC-FSC-JT-xh2s9s.webp",
+        "acoustic-FSC-FSC-JT-xogzuq.webp",
+        "acoustic-FSC-FSC-JT-zklrr8.webp"
+      ],
+      "FSC-KOA": [
+        "acoustic-FSC-FSC-KOA-b03sb2.webp",
+        "acoustic-FSC-FSC-KOA-ln3sk8.webp",
+        "acoustic-FSC-FSC-KOA-wcbs0k.webp",
+        "acoustic-FSC-FSC-KOA-z7i3j1.webp"
+      ],
+      "FSC-TK": [
+        "acoustic-FSC-FSC-TK-ke9vp4.webp",
+        "acoustic-FSC-FSC-TK-lksjlt.webp",
+        "acoustic-FSC-FSC-TK-oiswxg.webp",
+        "acoustic-FSC-FSC-TK-yfm3w2.webp"
+      ]
+    },
+    "IW-240": {
+      "IW-240-MNS": [
+        "acoustic-IW-240-IW-240-MNS-544zqt.webp",
+        "acoustic-IW-240-IW-240-MNS-axx1v4.webp",
+        "acoustic-IW-240-IW-240-MNS-g69u80.webp",
+        "acoustic-IW-240-IW-240-MNS-t84r4z.webp"
+      ]
+    },
+    "MINDI": {
+      "IWC-240D-NA": [
+        "acoustic-MINDI-IWC-240D-NA-9jzbke.webp",
+        "acoustic-MINDI-IWC-240D-NA-c04pi3.webp",
+        "acoustic-MINDI-IWC-240D-NA-c9u82g.webp",
+        "acoustic-MINDI-IWC-240D-NA-iatck5.webp"
+      ]
+    },
+    "MINI": {
+      "AEG-MINI-1": [
+        "acoustic-MINI-AEG-MINI-1-5snypd.webp",
+        "acoustic-MINI-AEG-MINI-1-7j7pvc.webp",
+        "acoustic-MINI-AEG-MINI-1-r8u5kq.webp",
+        "acoustic-MINI-AEG-MINI-1-tapka2.webp"
+      ],
+      "AEG-MINI-3": [
+        "acoustic-MINI-AEG-MINI-3-6ffn7m.webp",
+        "acoustic-MINI-AEG-MINI-3-hvgebg.webp",
+        "acoustic-MINI-AEG-MINI-3-n2eye6.webp",
+        "acoustic-MINI-AEG-MINI-3-syczkf.webp"
+      ],
+      "TK-MINI-1": [
+        "acoustic-MINI-TK-MINI-1-5u7y73.webp",
+        "acoustic-MINI-TK-MINI-1-cw5285.webp",
+        "acoustic-MINI-TK-MINI-1-hp7vm0.webp",
+        "acoustic-MINI-TK-MINI-1-oju399.webp"
+      ],
+      "TK-MINI-3": [
+        "acoustic-MINI-TK-MINI-3-9024xt.webp",
+        "acoustic-MINI-TK-MINI-3-ekoe7l.webp",
+        "acoustic-MINI-TK-MINI-3-kg4q38.webp",
+        "acoustic-MINI-TK-MINI-3-sca8ty.webp"
+      ]
+    },
+    "TK": {
+      "TK-2412": [
+        "acoustic-TK-TK-2412-aij7ft.webp",
+        "acoustic-TK-TK-2412-m8vp2m.webp",
+        "acoustic-TK-TK-2412-n4j1tt.webp",
+        "acoustic-TK-TK-2412-v4mslq.webp"
+      ],
+      "TK-34": [
+        "acoustic-TK-TK-34-33m4wc.webp",
+        "acoustic-TK-TK-34-4cqdm0.webp",
+        "acoustic-TK-TK-34-jttl06.webp",
+        "acoustic-TK-TK-34-tu3iam.webp"
+      ],
+      "TK-38": [
+        "acoustic-TK-TK-38-4ganqf.webp",
+        "acoustic-TK-TK-38-4pvne7.webp",
+        "acoustic-TK-TK-38-64nn8u.webp",
+        "acoustic-TK-TK-38-80e24i.webp",
+        "acoustic-TK-TK-38-8q2fhv.webp",
+        "acoustic-TK-TK-38-9eutnl.webp",
+        "acoustic-TK-TK-38-a7oh9v.webp",
+        "acoustic-TK-TK-38-aw8fnq.webp",
+        "acoustic-TK-TK-38-b54iy1.webp",
+        "acoustic-TK-TK-38-d4eeuz.webp",
+        "acoustic-TK-TK-38-hncdst.webp",
+        "acoustic-TK-TK-38-jano3y.webp",
+        "acoustic-TK-TK-38-lrlv87.webp",
+        "acoustic-TK-TK-38-mx6766.webp",
+        "acoustic-TK-TK-38-nggwu0.webp",
+        "acoustic-TK-TK-38-tft3w2.webp",
+        "acoustic-TK-TK-38-u348bt.webp",
+        "acoustic-TK-TK-38-z253rv.webp"
+      ],
+      "TKC-240": [
+        "acoustic-TK-TKC-240-7mes11.webp",
+        "acoustic-TK-TKC-240-n4o4eg.webp",
+        "acoustic-TK-TKC-240-np9wec.webp",
+        "acoustic-TK-TKC-240-qyflqs.webp"
+      ],
+      "TKFC-240": [
+        "acoustic-TK-TKFC-240-0j1cdk.webp",
+        "acoustic-TK-TKFC-240-abzb28.webp",
+        "acoustic-TK-TKFC-240-grfvrm.webp",
+        "acoustic-TK-TKFC-240-xuf4jz.webp"
+      ]
+    }
+  }
+}

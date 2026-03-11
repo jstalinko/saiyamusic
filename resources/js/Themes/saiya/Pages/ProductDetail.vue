@@ -32,46 +32,7 @@
                             </button>
                         </div>
 
-                        <!-- Wood materials (simple clickable cards) -->
-                        <div class="pt-4">
-                            <h3 class="text-sm font-bold text-gray-900 mb-3">
-                                Material References
-                            </h3>
-
-                            <div class="space-y-3">
-                                <button v-for="wood in woodOptions" :key="wood.name" type="button"
-                                    @click="selectedImage = wood.image" :class="[
-                                        'w-full flex items-center gap-4 rounded-2xl border p-3 text-left transition-all',
-                                        selectedImage === wood.image
-                                            ? 'border-orange-600 bg-orange-50/40 shadow-sm'
-                                            : 'border-gray-100 bg-white hover:bg-gray-50'
-                                    ]">
-                                    <!-- Thumbnail -->
-                                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                                        <img :src="imageUrl(wood.image)" class="w-full h-full object-cover"
-                                            :alt="wood.name" loading="lazy" />
-                                    </div>
-
-                                    <!-- Content -->
-                                    <div class="flex-1">
-                                        <p class="font-extrabold text-gray-900 leading-tight">
-                                            {{ wood.name }}
-                                        </p>
-                                        <p class="text-xs text-gray-600 mt-1 line-clamp-2">
-                                            {{ wood.desc }}
-                                        </p>
-                                    </div>
-
-                                    <!-- Indicator -->
-                                    <div class="flex-shrink-0">
-                                        <div :class="[
-                                            'w-2.5 h-2.5 rounded-full transition',
-                                            selectedImage === wood.image ? 'bg-orange-600' : 'bg-gray-300'
-                                        ]" />
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
+                    
 
                     </div>
 
@@ -140,13 +101,7 @@ const selectedImage = ref(product.value.image);
 
 
 
-// Data Related Products (Contoh)
-const relatedProducts = [
-    { id: 1, code: 'SY-EL-02', name: 'Phoenix Pro', category: 'Electric', bodyWood: 'Mahogany', neckWood: 'Maple', image: 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?q=80&w=400' },
-    { id: 2, code: 'SY-EL-05', name: 'Thunderbolt X', category: 'Electric', bodyWood: 'Alder', neckWood: 'Ebony', image: 'https://images.unsplash.com/photo-1550291652-6ea9114a47b1?q=80&w=400' },
-    { id: 3, code: 'SY-EL-09', name: 'Skyline Hybrid', category: 'Electric', bodyWood: 'Ash', neckWood: 'Maple', image: 'https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?q=80&w=400' },
-    { id: 4, code: 'SY-EL-12', name: 'Neo-Classic', category: 'Electric', bodyWood: 'Walnut', neckWood: 'Rosewood', image: 'https://images.unsplash.com/photo-1550985616-10810253b84d?q=80&w=400' },
-];
+const relatedProducts = ref($props.jdata.relatedProducts || []);
 const woodOptions = [
     {
         name: 'Ebony',

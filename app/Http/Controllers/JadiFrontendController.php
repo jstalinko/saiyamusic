@@ -54,19 +54,23 @@ class JadiFrontendController extends Controller
             });
 
         $category = $request->query('category', 'All');
-        $productsQuery = Product::where('active', true)->with('category')->orderBy('id', 'desc');
+        $subCategoriesQuery = \App\Models\ProductSubCategory::with('category')->orderBy('id', 'desc');
+
         if ($category !== 'All') {
-            $productsQuery->whereHas('category', function ($query) use ($category) {
-                $query->where('slug', $category);
-            });
+            $catModel = ProductCategory::where('slug', $category)->first();
+            if ($catModel) {
+                $subCategoriesQuery->where('product_category_id', $catModel->id);
+            }
         }
 
-        $props['products'] = $productsQuery->paginate(8)->withQueryString();
+        $props['subCategories'] = $subCategoriesQuery->paginate(8)->withQueryString();
         $props['selectedCategory'] = $category;
         $props['categories'] = ProductCategory::where('active', true)->get();
         $props['featuredProducts'] = Product::where('active', true)->where('featured', true)->with('category')->orderBy('id', 'desc')->take(8)->get();
         $props['banners'] = Banner::where('active', true)->get();
         $props['offices'] = json_decode(j_get_option('offices'), true);
+        $props['about_us_images'] = json_decode(j_get_option('about_us_images'), true);
+        $props['about_us_description'] = j_get_option('about_us_description');
         return Inertia::render('Home', j_inertia_props($props));
     }
     public function posts()
@@ -99,16 +103,38 @@ class JadiFrontendController extends Controller
         );
 
         $category = $request->query('category', 'All');
-        $productsQuery = Product::where('active', true)->with('category')->orderBy('id', 'desc');
+        $subCategory = $request->query('subCategory', '');
+        $search = $request->query('search', '');
+
+        $productsQuery = Product::where('active', true)->with(['category', 'subCategory'])->orderBy('id', 'desc');
+
         if ($category !== 'All') {
-            $productsQuery->whereHas('category', function ($query) use ($category) {
-                $query->where('slug', $category);
+            $catModel = ProductCategory::where('slug', $category)->first();
+            if ($catModel) {
+                $productsQuery->where('product_category_id', $catModel->id);
+            }
+        }
+
+        if ($subCategory !== '') {
+            $subCatModel = \App\Models\ProductSubCategory::where('slug', $subCategory)->first();
+            if ($subCatModel) {
+                $productsQuery->where('product_sub_category_id', $subCatModel->id);
+            }
+        }
+
+        if ($search !== '') {
+            $productsQuery->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('model', 'like', '%' . $search . '%');
             });
         }
 
-        $props['products'] = $productsQuery->paginate(8)->withQueryString();
+        $props['products'] = $productsQuery->paginate(12)->withQueryString();
         $props['selectedCategory'] = $category;
+        $props['selectedSubCategory'] = $subCategory;
+        $props['search'] = $search;
         $props['categories'] = ProductCategory::where('active', true)->get();
+        $props['subCategories'] = \App\Models\ProductSubCategory::with('category')->orderBy('name')->get();
 
         return Inertia::render('Products', j_inertia_props($props));
     }
@@ -123,6 +149,15 @@ class JadiFrontendController extends Controller
             json_decode(config('j_option_autoload.meta_tags'), true)
         );
         $props['product'] = Product::where('slug', $request->slug)->with('category')->firstOrFail();
+        
+        $props['relatedProducts'] = Product::where('active', true)
+            ->where('product_category_id', $props['product']->product_category_id)
+            ->where('id', '!=', $props['product']->id)
+            ->with('category')
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+            
         return Inertia::render('ProductDetail', j_inertia_props($props));
     }
 
@@ -299,5 +334,19 @@ class JadiFrontendController extends Controller
         );
         $props['offices'] = json_decode(j_get_option('offices'), true);
         return Inertia::render('Contact', j_inertia_props($props));
+    }
+
+    public function aboutUs()
+    {
+         j_inertia_meta(
+            "About Us - " . config('j_option_autoload.site_name'),
+            "About Us",
+            url('/about-us'),
+            url('storage' . config('j_option_autoload.icon')),
+            json_decode(config('j_option_autoload.meta_tags'), true)
+        );
+        $props['about_us_images'] = json_decode(j_get_option('about_us_images'), true);
+        $props['about_us_description'] = j_get_option('about_us_description');
+        return Inertia::render('AboutUs', j_inertia_props($props));
     }
 }

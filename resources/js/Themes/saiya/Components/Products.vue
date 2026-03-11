@@ -35,19 +35,23 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- SubCategory Grid -->
+            <div v-if="subCategoriesList.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <TransitionGroup name="list" enter-active-class="transition duration-500 ease-out"
                     enter-from-class="opacity-0 translate-y-8" enter-to-class="opacity-100 translate-y-0"
                     leave-active-class="absolute transition duration-300 ease-in"
                     leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
-                    <ProductCard v-for="product in productsList" :key="product.id" :product="product" />
+
+                    <SubCategoryCard v-for="sub in subCategoriesList" :key="'sub_'+sub.id" :subCategory="sub"
+                        @click="goToSubCategory(sub)" />
                 </TransitionGroup>
             </div>
 
-            <div v-if="productsList.length === 0" class="text-center py-20 text-gray-400">
-                Produk belum tersedia untuk kategori ini.
+            <div v-if="subCategoriesList.length === 0" class="text-center py-20 text-gray-400">
+                Kategori belum memiliki sub-koleksi.
             </div>
 
+            <!-- Load More -->
             <div v-if="hasMore" class="text-center mt-12">
                 <button @click="loadMore"
                     class="px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
@@ -61,12 +65,12 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { router } from '@inertiajs/vue3';
-import ProductCard from './ProductCard.vue';
+import SubCategoryCard from './SubCategoryCard.vue';
 import { imageUrl } from '@/helpers';
 
 const $prop = defineProps({
     categories: Object,
-    products: Object,
+    subCategories: Object,
     selectedCategory: {
         type: String,
         default: 'All'
@@ -76,16 +80,20 @@ const $prop = defineProps({
 const selectedCategory = ref($prop.selectedCategory);
 const categories = ref($prop.categories);
 
-const productsList = ref([...$prop.products.data]);
-const nextUrl = ref($prop.products.next_page_url);
+const subCategoriesList = ref($prop.subCategories ? [...$prop.subCategories.data] : []);
+const nextUrl = ref($prop.subCategories ? $prop.subCategories.next_page_url : null);
 
-watch(() => $prop.products, (newProducts) => {
-    if (newProducts.current_page === 1) {
-        productsList.value = [...newProducts.data];
+watch(() => $prop.subCategories, (newSubCategories) => {
+    if (newSubCategories) {
+        if (newSubCategories.current_page === 1) {
+            subCategoriesList.value = [...newSubCategories.data];
+        } else {
+            subCategoriesList.value = [...subCategoriesList.value, ...newSubCategories.data];
+        }
+        nextUrl.value = newSubCategories.next_page_url;
     } else {
-        productsList.value = [...productsList.value, ...newProducts.data];
+        subCategoriesList.value = [];
     }
-    nextUrl.value = newProducts.next_page_url;
 }, { deep: true });
 
 const hasMore = computed(() => !!nextUrl.value);
@@ -108,10 +116,26 @@ const selectCategory = (categorySlug) => {
         only: ['jdata']
     });
 };
+
+const goToSubCategory = (sub) => {
+    const catSlug = selectedCategory.value !== 'All' ? selectedCategory.value : (sub.category ? sub.category.slug : 'All');
+    router.get('/products', { category: catSlug, subCategory: sub.slug });
+};
 </script>
 
 <style scoped>
 .list-move {
     transition: all 0.5s ease;
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 </style>

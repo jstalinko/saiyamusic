@@ -93,6 +93,17 @@ class CategorySeeder extends Seeder
             </ul>',
                 'active' => true,
             ],
+            [
+                'name' => 'Bass',
+                'image' => '/images/bass.webp',
+                'description' => '
+            <p><strong>Bass</strong> is a compact, four-stringed instrument that delivers a bright, cheerful, and percussive tone.</p>
+            <ul>
+                <li><strong>Best for:</strong> Tropical music, acoustic covers, and beginners due to its portable size.</li>
+                <li><strong>Key Feature:</strong> Uses G-C-E-A tuning with nylon strings, making it very easy on the fingers for new players.</li>
+            </ul>',
+                'active' => true,
+            ],
         ];
 
         $all = $typeCategories;

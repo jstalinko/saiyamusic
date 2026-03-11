@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Forms\Components\RichEditor;
 use UnitEnum;
 use BackedEnum;
 use Filament\Forms;
@@ -37,19 +38,25 @@ class Setting extends Page implements Forms\Contracts\HasForms
         if (isset($this->data['offices']) && is_string($this->data['offices'])) {
             $this->data['offices'] = json_decode($this->data['offices'] ?? '[]', true);
         }
+        if (isset($this->data['about_us_images']) && is_string($this->data['about_us_images'])) {
+            $this->data['about_us_images'] = json_decode($this->data['about_us_images'] ?? '[]', true);
+        }
+
     }
     public function loadSettings(): array
     {
 
         return [
-            'base_url'         => j_get_option('base_url', url('/')),
-            'site_name'        => j_get_option('site_name', env('APP_NAME')),
-            'tagline'          => j_get_option('tagline'),
-            'icon'             => [j_get_option('icon')],
-            'meta_keywords'    => j_get_option('meta_keywords'),
+            'base_url' => j_get_option('base_url', url('/')),
+            'site_name' => j_get_option('site_name', env('APP_NAME')),
+            'tagline' => j_get_option('tagline'),
+            'icon' => [j_get_option('icon')],
+            'meta_keywords' => j_get_option('meta_keywords'),
             'meta_description' => j_get_option('meta_description'),
-            'meta_tags'        => j_get_option('meta_tags', []),
-            'offices'          => j_get_option('offices', []),
+            'meta_tags' => j_get_option('meta_tags', []),
+            'offices' => j_get_option('offices', []),
+            'about_us_images' => j_get_option('about_us_images', []),
+            'about_us_description' => j_get_option('about_us_description', []),
         ];
     }
 
@@ -63,6 +70,9 @@ class Setting extends Page implements Forms\Contracts\HasForms
         }
         if (isset($data['offices']) && is_array($data['offices'])) {
             $data['offices'] = json_encode($data['offices'], JSON_PRETTY_PRINT);
+        }
+        if (isset($data['about_us_images']) && is_array($data['about_us_images'])) {
+            $data['about_us_images'] = json_encode($data['about_us_images'], JSON_PRETTY_PRINT);
         }
 
 
@@ -79,40 +89,49 @@ class Setting extends Page implements Forms\Contracts\HasForms
     {
         return $schema
             ->schema([
-                Section::make('General')
-                    ->schema([
-                        TextInput::make('base_url')->label('Base URL')->required(),
-                        TextInput::make('site_name')->label('Site Name')->required(),
-                        TextInput::make('tagline'),
-                        FileUpload::make('icon')->label('Site Icon'),
-                    ]),
-                Section::make('Office Address')
-                    ->schema([
-                        Repeater::make('offices')
-                            ->schema([
-                                TextInput::make('name')->label('Office Name'),
-                                TextInput::make('province')->label('Province'),
-                                TextInput::make('city')->label('City'),
-                                TextInput::make('address')->label('Address'),
-                                TextInput::make('phone')->label('Phone'),
-                                TextInput::make('email')->label('Email'),
-                                TextInput::make('map_url')->label('Map URL'),
-                            ])->columns(2),
-                    ]),
+            Section::make('General')
+            ->schema([
+                TextInput::make('base_url')->label('Base URL')->required(),
+                TextInput::make('site_name')->label('Site Name')->required(),
+                TextInput::make('tagline'),
+                FileUpload::make('icon')->label('Site Icon'),
+            ]),
+            Section::make('Office Address')
+            ->schema([
+                Repeater::make('offices')
+                ->schema([
+                    TextInput::make('name')->label('Office Name'),
+                    TextInput::make('province')->label('Province'),
+                    TextInput::make('city')->label('City'),
+                    TextInput::make('address')->label('Address'),
+                    TextInput::make('phone')->label('Phone'),
+                    TextInput::make('email')->label('Email'),
+                    TextInput::make('map_url')->label('Map URL'),
+                ])->columns(2),
+            ]),
 
-                Section::make('SEO')
-                    ->schema([
-                        TextInput::make('meta_keywords')->label('Meta Keywords'),
-                        TextInput::make('meta_description')->label('Meta Description'),
+            Section::make('About US')
+            ->schema([
+                FileUpload::make('about_us_images')->label('Gallery Images')
+                ->multiple()
+                ->disk('public')
+                ->directory('about-us')
+                ->visibility('public'),
+                RichEditor::make('about_us_description')->label('Description'),
+            ]),
+            Section::make('SEO')
+            ->schema([
+                TextInput::make('meta_keywords')->label('Meta Keywords'),
+                TextInput::make('meta_description')->label('Meta Description'),
 
-                        Repeater::make('meta_tags')
-                            ->schema([
-                                TextInput::make('meta_name')->label('Meta Name')->required(),
-                                TextInput::make('meta_content')->label('Meta Content')->required(),
-                            ])
-                            ->columns(2),
-                    ]),
-            ])
+                Repeater::make('meta_tags')
+                ->schema([
+                    TextInput::make('meta_name')->label('Meta Name')->required(),
+                    TextInput::make('meta_content')->label('Meta Content')->required(),
+                ])
+                ->columns(2),
+            ]),
+        ])
             ->statePath('data');
     }
 }

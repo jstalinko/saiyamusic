@@ -2,8 +2,8 @@
     <AppLayout>
         <div>
             <Hero :banners="jdata.banners" />
-            <About />
-            <Products :categories="jdata.categories" :products="jdata.products"
+            <About :images="jdata.about_us_images" :description="jdata.about_us_description" />
+            <Products :categories="jdata.categories" :subCategories="jdata.subCategories"
                 :selectedCategory="jdata.selectedCategory" />
             <FeaturedProducts :products="jdata.featuredProducts" />
             <News :posts="jdata.posts" />
