@@ -19,12 +19,13 @@ class ProductSubCategoryForm
 
             TextInput::make('name')
             ->required(),
-            TextInput::make('slug')
-            ->required(),
             Textarea::make('description')
             ->default(null)
             ->columnSpanFull(),
             FileUpload::make('image')
+            ->imageEditor()
+            ->disk('public')
+            ->visibility('public')
             ->image(),
             Toggle::make('active')
             ->required(),
