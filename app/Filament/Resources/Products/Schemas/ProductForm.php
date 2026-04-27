@@ -46,6 +46,9 @@ class ProductForm
                 Select::make('product_category_id')
                     ->relationship('category', 'name')
                     ->required(),
+                Select::make('product_sub_category_id')
+                    ->relationship('subCategory', 'name')
+                    ->required(),
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('model')
